@@ -28,12 +28,12 @@ def home():
     return "This is home!"
 
 
-@app.route('/about/')
+@app.route('/about')
 def about():
     """Render the website's about page."""
     return render_template('about.html')
 
-@app.route('/hello/')
+@app.route('/hello')
 def hello():
     return "Hey there!"
 
