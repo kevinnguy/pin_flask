@@ -24,7 +24,8 @@ else:
 @app.route('/')
 def home():
     """Render website's home page."""
-    return render_template('home.html')
+#    return render_template('home.html')
+    return "This is home!"
 
 
 @app.route('/about/')
@@ -32,6 +33,9 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
+@app.route('/hello/')
+def hello():
+    return "Hey there!"
 
 ###
 # The functions below should be applicable to all Flask apps.
