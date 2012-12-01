@@ -15,13 +15,13 @@ Werkzeug==0.8.3
 Whoosh==2.4.1
 blinker==1.2
 decorator==3.4.0
-
 ## FIXME: could not find svn URL in dependency_links for this package:
 flup==1.0.3.dev-20110405
 gevent==0.13.8
 greenlet==0.4.0
 gunicorn==0.16.1
 mock==1.0.1
+psycopg2==2.4.5
 python-openid==2.2.5
 pytz==2012h
 speaklater==1.3
