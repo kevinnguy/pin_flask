@@ -1,0 +1,62 @@
+{%  extends "base.html" %}
+
+{% block title %}
+    KevinNguy
+{%  endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block main %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul xmlns="http://www.w3.org/1999/html">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    <h1 xmlns="http://www.w3.org/1999/html">Hi, {{ user.name }}</h1>
+    {% for post in posts %}
+        <p>{{ post.author.name }} says: {{ post.post }}</p>
+    {%  endfor %}
+
+    <h1>Login</h1>
+    <form action="" method="post" name="login">
+        {{ form.hidden_tag() }}
+        <p>
+            Enter OpenID:</br>
+            {{ form.openid(size=80) }} </br>
+            {% for error in form.errors.openid %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %} </br>
+
+            - or -
+            {% for provider in openid_providers %}
+                <a href="javascript:set_openId('{{ provider.url }}', '{{ provider.name }}'); ">{{ provider.name }}</a>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.remember_me }} Remember Me
+        </p>
+        <p><input type="submit" value="Sign In"</p>
+    </form>
+
+    <h2><a href="{{ url_for('logout') }}">Logout</a></h2>
+{% endblock %}
+
+{% block js %}
+    <script>
+        function set_openId(openId, provider) {
+            username = openId.search('<username>')
+            if (username != -1) {
+                // openid requires username
+                promptUser = prompt('Enter your' + provider + ' username:')
+                openId = openId.substr(0,username) + promptUser
+            }
+            form = document.forms['index'];
+            form.elements['openId'].value = openId
+        }
+    </script>
+{% endblock %}
