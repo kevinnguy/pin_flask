@@ -169,6 +169,7 @@ header .nav {
 	-webkit-box-shadow: 0 0 1px 0px #AAA, 0 2px 0px 0px #999,0 5px 10px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow: 0 0 1px 0px #aaa, 0 2px 0px 0px #999999,0 5px 10px rgba(0, 0, 0, 0.25);
 	border-radius: 8px;
+    background-color: #F2F2F2;
 }
 
 .top_item, .bottom_item {
@@ -232,6 +233,19 @@ header .nav {
 
 .nav {
     text-decoration: none;
+}
+
+#motto {
+    text-align: center;
+    font-size: 60px;
+    margin-top: 100px;
+    margin-bottom: -40px;
+}
+
+.signup {
+    text-align: center;
+    font-size: 30px;
+    padding: 10px 0;
 }
 
 

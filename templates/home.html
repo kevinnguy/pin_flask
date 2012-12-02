@@ -1,67 +1,38 @@
 {% extends "base.html" %}
 
 {% block css %}
+    <link rel="stylesheet" href="/static/css/auth-buttons.css" xmlns="http://www.w3.org/1999/html"
+          xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
 
+{% block motto %}
+    Share and discover code the new way.
 {% endblock %}
 
 {% block main %}
+    <div class="col signup item">
+        Join us!
+        <form>
+            Email address:<input type="text"></br>
+            Password:<input type="text"></br>
+            <button type="button">Join!</button>
+        </form>
+    </div>
+    <div class="col signup item">
+        <p>or sign in the cool way:</p>
+        <p><a class="btn-auth btn-github large" href="#button">Sign in with <b>GitHub</b></a></p>
+        <p><a class="btn-auth btn-google large" href="#button">Sign in with <b>Google</b></a></p>
+        <p><a class="btn-auth btn-facebook large" href="#button">Sign in with <b>Facebook</b></a></p>
+        <p><a class="btn-auth btn-twitter large" href="#button">Sign in with <b>Twitter</b></a></p>
+    </div>
+
     <div class="col item">
         <div class="top_item">
-            <p class="nav">hello_world.py</p>
+            <p class="nav">hello_world</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">pinflask</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">kevnguy</p>
             </div>
         </div>
-
-        <pre class="sunlight-highlight-python">
-def hello_world():
-    return "Hello worl-I mean AngelHack!"
-
-
-@app.route('/')
-def home():
-    """Render website's home page."""
-    return render_template('home.html')
-
-
-@app.route('/about/')
-def about():
-    """Render the website's about page."""
-    return render_template('about.html')
-
-
-###
-# The functions below should be applicable to all Flask apps.
-###
-
-@app.route('/<file_name>.txt')
-            def send_text_file(file_name):
-            """Send your static text file."""
-            file_dot_text = file_name + '.txt'
-            return app.send_static_file(file_dot_text)
-
-
-            @app.after_request
-            def add_header(response):
-            """
-            Add headers to both force latest IE rendering engine or Chrome Frame,
-            and also to cache the rendered page for 10 minutes.
-            """
-            response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-            response.headers['Cache-Control'] = 'public, max-age=600'
-            return response
-
-
-            @app.errorhandler(404)
-            def page_not_found(error):
-            """Custom 404 page."""
-            return render_template('404.html'), 404
-
-
-            if __name__ == '__main__':
-            port = int(os.environ.get('PORT', 5000))
-            app.run(host='0.0.0.0', port=port, debug=True)
-        </pre>
 
         <div class="bottom_item">
             <p class="nav"><a href="#">show related</a></p>
@@ -73,16 +44,12 @@ def about():
 
     <div class="col item">
         <div class="top_item">
-            <p class="nav">sign_up.py</p>
+            <p class="nav">login_beta</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">pinflask</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">kevnguy</p>
             </div>
         </div>
 
-        <pre class="sunlight-highlight-python">
-def hello_world():
-    return "Hello worl-I mean AngelHack!"
-        </pre>
 
         <div class="bottom_item">
             <a class="nav" href="#">show related</a>

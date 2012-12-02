@@ -22,16 +22,32 @@ else:
 # Routing for your application.
 ###
 
+users = [
+    'angelhack',
+    'beerme',
+    'sandwiches'
+]
+
 @app.route('/')
 def home():
     """Render website's home page."""
     return render_template('home.html')
 
+@app.route('/beerme')
+def beerme():
+    return render_template('beerme.html')
 
-@app.route('/about/')
-def about():
-    """Render the website's about page."""
-    return render_template('about.html')
+@app.route('/angelhack')
+def angelhack():
+    return render_template('angelhack.html')
+
+@app.route('/sandwiches')
+def sandwiches():
+    return render_template('sandwiches.html')
+
+
+
+
 
 
 ###

@@ -40,6 +40,10 @@
     {% include "header.html" %}
   </header>
 
+  <div id="motto">
+      {% block motto %}{% endblock %}
+  </div>
+
   <div id="main" role="main">
     {% block main %}{% endblock %}
   </div>
@@ -70,7 +74,7 @@
   </script>
 
   <script type="text/javascript">
-      Sunlight.highlightAll({ lineNumbers: true });
+      Sunlight.highlightAll({ lineNumbers: true, maxHeight: 431 });
   </script>
 
   {% block js %}{% endblock %}
