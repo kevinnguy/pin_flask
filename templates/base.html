@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>{% block title %}Codekuna{% endblock %}</title>
+  <title>Codekuna{% block title %}{% endblock %}</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -44,6 +44,10 @@
 
   <div id="motto">
       {% block motto %}{% endblock %}
+  </div>
+
+  <div id="userinfo">
+      {% block userinfo %}{% endblock %}
   </div>
 
   <div id="main" role="main">

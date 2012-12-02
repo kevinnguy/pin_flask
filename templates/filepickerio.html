@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %} - Filepicker.io{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block search %}filepicker.io{% endblock %}
+
+{% block user %}kevinnguy{% endblock %}
+
+{% block user_img %}<img class="user_img" src="/static/img/kevinnguy.jpeg" alt="img"
+                         xmlns="http://www.w3.org/1999/html">{% endblock %}
+
+{% block userinfo %}
+    <div class="user_icon"><img src="/static/img/filepicker.png"></div>
+    <div class="user_info">
+        <h1>Filepicker.io</h1>
+        <h2>A full-stack engine for working with user content.</h2></br>
+        <h3><a href="http://filepicker.io">filepicker.io</a></h3>
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">convert_images</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/filepicker.png" alt="img"><p class="name"><a href="filepickerio">filepicker.io</a></p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-javascript">
+var fpfile = { url: 'https://www.filepicker.io/api/file/fxOBK6ZIQsqEvKQY5tFa',
+    filename: 'customers.jpg', mimetype: 'image/jpeg', isWriteable: false, size: 629454};
+console.log("Converting...");
+/*an <img> element where we can display the resulting image*/
+var result = document.getElementById("convert-result");
+filepicker.convert(fpfile, {width: 200, height: 200},
+    function(new_FPFile){
+        console.log(new_FPFile.url);
+        result.src = new_FPFile.url;
+    }
+);</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><a class="name" href="javascript">javascript</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">FPPickerController</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/filepicker.png" alt="img"><p class="name"><a href="filepickerio">filepicker.io</a></p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-objective-c">
+// To create the object
+FPPickerController *fpController = [[FPPickerController alloc] init];
+
+// Set the delegate
+fpController.fpdelegate = self;
+
+// Ask for specific data types. (Optional) Default is all files.
+fpController.dataTypes = [NSArray arrayWithObjects:@"text/plain", nil];
+
+// Select and order the sources (Optional) Default is all sources
+fpController.sourceNames = [[NSArray alloc] initWithObjects: FPSourceImagesearch, FPSourceDropbox, nil];
+
+// You can set some of the in built Camera properties as you would with UIImagePicker
+fpController.allowsEditing = YES;
+
+
+/* Control if we should upload or download the files for you.
+ * Default is yes.
+ * When a user selects a local file, we'll upload it and return a remote url
+ * When a user selects a remote file, we'll download it and return the filedata to you.
+ */
+//fpController.shouldUpload = NO;
+//fpController.shouldDownload = NO;
+
+// Display it.
+[self presentModalViewController:fpController animated:YES];</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><a class="name" href="objectivec">objective-c</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{%  endblock %}

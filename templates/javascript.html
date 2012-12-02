@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %} - Javascript{% endblock %}
+
 {% block css %}
 {% endblock %}
 
@@ -15,7 +17,7 @@
     <div class="top_item">
         <p class="nav">tetris</p>
         <div class="username">
-            <div class="vline"></div><img class="user_img" src="/static/img/firebase.png" alt="img"><p class="name">firebase</p>
+            <div class="vline"></div><img class="user_img" src="/static/img/firebase.png" alt="img"><p class="name"><a href="firebase">firebase</a></p>
         </div>
     </div>
 
@@ -646,7 +648,7 @@ var canvas = $("#canvas0").get(0);
     <div class="bottom_item">
         <p class="nav"><a href="#">show related</a></p>
         <div class="language">
-            <div class="vline"></div><p class="name">javascript</p>
+            <div class="vline"></div><a class="name" href="javascript">javascript</a>
         </div>
     </div>
     </div>
@@ -655,7 +657,7 @@ var canvas = $("#canvas0").get(0);
         <div class="top_item">
             <p class="nav">presence</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/firebase.png" alt="img"><p class="name">firebase</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/firebase.png" alt="img"><p class="name"><a href="firebase">firebase</a></p>
             </div>
         </div>
 
@@ -725,7 +727,7 @@ var canvas = $("#canvas0").get(0);
         <div class="bottom_item">
             <p class="nav"><a href="#">show related</a></p>
             <div class="language">
-                <div class="vline"></div><p class="name">javascript</p>
+                <div class="vline"></div><a class="name" href="javascript">javascript</a>
             </div>
         </div>
     </div>
@@ -734,7 +736,7 @@ var canvas = $("#canvas0").get(0);
         <div class="top_item">
             <p class="nav">convert_images</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/filepicker.png" alt="img"><p class="name">filepicker.io</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/filepicker.png" alt="img"><p class="name"><a href="filepickerio">filepicker.io</a></p>
             </div>
         </div>
 
@@ -754,12 +756,10 @@ filepicker.convert(fpfile, {width: 200, height: 200},
         <div class="bottom_item">
             <p class="nav"><a href="#">show related</a></p>
             <div class="language">
-                <div class="vline"></div><p class="name">javascript</p>
+                <div class="vline"></div><a class="name" href="javascript">javascript</a>
             </div>
         </div>
     </div>
-
-
 
 {% endblock %}
 
