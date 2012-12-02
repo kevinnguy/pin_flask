@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block search %}scala{% endblock %}
+
+{% block user %}kevinnguy{% endblock %}
+
+{% block user_img %}<img class="user_img" src="/static/img/kevinnguy.jpeg" alt="img">{% endblock %}
+
+{% block main %}
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">hello_world</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/angelhack.jpeg" alt="img"><p class="name">angelhack</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-scala">
+object HelloWorld {
+    def main(args: Array[String]) {
+      println("Hello, world!")
+    }
+  }</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">scala</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{%  endblock %}

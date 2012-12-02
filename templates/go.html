@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block search %}go{% endblock %}
+
+{% block user %}kevinnguy{% endblock %}
+
+{% block user_img %}<img class="user_img" src="/static/img/kevinnguy.jpeg" alt="img">{% endblock %}
+
+{% block main %}
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">hello_world</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/beerme.jpeg" alt="img"><p class="name">beerme</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-go">
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello world!")
+}</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">go</p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+
+{%  endblock %}

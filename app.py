@@ -49,6 +49,8 @@ def filepickerio():
 def firebase():
     return render_template('firebase.html')
 
+
+
 @app.route('/recent')
 def recent():
     return render_template('recent.html')
@@ -57,8 +59,33 @@ def recent():
 def python():
     return render_template('python.html')
 
+@app.route('/cpp')
+def cpp():
+    return render_template('cpp.html')
 
+@app.route('/java')
+def java():
+    return render_template('java.html')
 
+@app.route('/go')
+def go():
+    return render_template('go.html')
+
+@app.route('/perl')
+def perl():
+    return render_template('perl.html')
+
+@app.route('/scala')
+def scala():
+    return render_template('scala.html')
+
+@app.route('/javascript')
+def javascript():
+    return render_template('javascript.html')
+
+@app.route('/objectivec')
+def objectivec():
+    return render_template('objectivec.html')
 
 
 ###
