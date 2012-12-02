@@ -5,12 +5,18 @@
           xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 {% endblock %}
 
+{% block search %}most_recent{% endblock %}
+
+{% block user %}kevinnguy{% endblock %}
+
+{% block user_img %}<img class="user_img" src="/static/img/kevinnguy.jpeg" alt="img">{% endblock %}
+
 {% block main %}
     <div class="col item">
         <div class="top_item">
             <p class="nav">fibonacci</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/beerme.jpeg" alt="img"><p class="name">beerme</p>
             </div>
         </div>
 
@@ -45,7 +51,7 @@ int fib(int n) {
     <div class="top_item">
         <p class="nav">sudoku</p>
         <div class="username">
-            <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+            <div class="vline"></div><img class="user_img" src="/static/img/beerme.jpeg" alt="img"><p class="name">beerme</p>
         </div>
     </div>
 
@@ -261,7 +267,7 @@ public class SimplifiedSudoku extends Applet implements Runnable
         <div class="top_item">
             <p class="nav">fibonacci</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/angelhack.jpeg" alt="img"><p class="name">angelhack</p>
             </div>
         </div>
 
@@ -313,7 +319,7 @@ if ( $#ARGV || int($ARGV[0]) ne $ARGV[0]) {
         <div class="top_item">
             <p class="nav">hello_world</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/beerme.jpeg" alt="img"><p class="name">beerme</p>
             </div>
         </div>
 
@@ -338,7 +344,7 @@ func main() {
         <div class="top_item">
             <p class="nav">hello_world</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/angelhack.jpeg" alt="img"><p class="name">angelhack</p>
             </div>
         </div>
 
@@ -361,7 +367,7 @@ object HelloWorld {
     <div class="top_item">
         <p class="nav">tetris</p>
         <div class="username">
-            <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">firebase</p>
+            <div class="vline"></div><img class="user_img" src="/static/img/firebase.png" alt="img"><p class="name">firebase</p>
         </div>
     </div>
 
@@ -1001,7 +1007,7 @@ var canvas = $("#canvas0").get(0);
         <div class="top_item">
             <p class="nav">presence</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">firebase</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/firebase.png" alt="img"><p class="name">firebase</p>
             </div>
         </div>
 
@@ -1080,7 +1086,7 @@ var canvas = $("#canvas0").get(0);
         <div class="top_item">
             <p class="nav">convert_images</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">filepicker.io</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/filepicker.png" alt="img"><p class="name">filepicker.io</p>
             </div>
         </div>
 
@@ -1109,7 +1115,7 @@ filepicker.convert(fpfile, {width: 200, height: 200},
         <div class="top_item">
             <p class="nav">FPPickerController</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">filepicker.io</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/filepicker.png" alt="img"><p class="name">filepicker.io</p>
             </div>
         </div>
 
@@ -1149,11 +1155,11 @@ fpController.allowsEditing = YES;
         </div>
     </div>
 
-    <div class="col item">
+    <div class="col item" id="angelhack-sudoku">
         <div class="top_item">
             <p class="nav">sudoku</p>
             <div class="username">
-                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">angelhack</p>
+                <div class="vline"></div><img class="user_img" src="/static/img/angelhack.jpeg" alt="img"><p class="name">angelhack</p>
             </div>
         </div>
 
@@ -1222,13 +1228,10 @@ if __name__ == '__main__':
         <div class="bottom_item">
             <p class="nav"><a href="#">show related</a></p>
             <div class="language">
-                <div class="vline"></div><p class="name">python</p>
+                <div class="vline"></div><a class="name" href="search/python">python</a>
             </div>
         </div>
     </div>
-
-
-
 
 {% endblock %}
 

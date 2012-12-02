@@ -41,14 +41,21 @@ def beerme():
 def angelhack():
     return render_template('angelhack.html')
 
-@app.route('/sandwiches')
-def sandwiches():
-    return render_template('sandwiches.html')
+@app.route('/filepickerio')
+def filepickerio():
+    return render_template('filepickerio.html')
+
+@app.route('/firebase')
+def firebase():
+    return render_template('firebase.html')
 
 @app.route('/recent')
 def recent():
     return render_template('recent.html')
 
+@app.route('/python')
+def python():
+    return render_template('python.html')
 
 
 
