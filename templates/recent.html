@@ -1,0 +1,1237 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/auth-buttons.css" xmlns="http://www.w3.org/1999/html"
+          xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block main %}
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">fibonacci</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-cpp">
+int fib(int n) {
+    if ( n == 0 || n == 1 )
+        return n;
+
+    int fib1 = 0;
+    int fib2 = 1;
+    int fib = 0;
+
+    for ( int i = 2; i < n; i++ )
+    {
+        fib = fib1 + fib2;
+        fib1 = fib2;
+        fib2 = fib;
+    }
+
+    return fib;
+}</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">c++</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col item">
+    <div class="top_item">
+        <p class="nav">sudoku</p>
+        <div class="username">
+            <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+        </div>
+    </div>
+
+        <pre class="sunlight-highlight-java">
+import java.applet.* ;
+import java.awt.* ;
+
+/**
+ * Solves a sudoku puzzle by recursion and backtracking
+ */
+public class SimplifiedSudoku extends Applet implements Runnable
+{
+   /** The model */
+   protected int model[][] ;
+
+   /** The view */
+   protected Button view[][] ;
+
+   /** Creates the model and sets up the initial situation */
+   protected void createModel()
+   {
+      model = new int[9][9] ;
+
+      // Clear all cells
+      for( int row = 0; row < 9; row++ )
+         for( int col = 0; col < 9; col++ )
+            model[row][col] = 0 ;
+
+      // Create the initial situation
+      model[0][0] = 9 ;
+      model[0][4] = 2 ;
+      model[0][6] = 7 ;
+      model[0][7] = 5 ;
+
+      model[1][0] = 6 ;
+      model[1][4] = 5 ;
+      model[1][7] = 4 ;
+
+      model[2][1] = 2 ;
+      model[2][3] = 4 ;
+      model[2][7] = 1 ;
+
+      model[3][0] = 2 ;
+      model[3][2] = 8 ;
+
+      model[4][1] = 7 ;
+      model[4][3] = 5 ;
+      model[4][5] = 9 ;
+      model[4][7] = 6 ;
+
+      model[5][6] = 4 ;
+      model[5][8] = 1 ;
+
+      model[6][1] = 1 ;
+      model[6][5] = 5 ;
+      model[6][7] = 8 ;
+
+      model[7][1] = 9 ;
+      model[7][4] = 7 ;
+      model[7][8] = 4 ;
+
+      model[8][1] = 8 ;
+      model[8][2] = 2 ;
+      model[8][4] = 4 ;
+      model[8][8] = 6 ;
+   }
+
+   /** Creates an empty view */
+   protected void createView()
+   {
+      setLayout( new GridLayout(9,9) ) ;
+
+      view = new Button[9][9] ;
+
+      // Create an empty view
+      for( int row = 0; row < 9; row++ )
+         for( int col = 0; col < 9; col++ )
+         {
+            view[row][col]  = new Button() ;
+            add( view[row][col] ) ;
+         }
+   }
+
+   /** Updates the view from the model */
+   protected void updateView()
+   {
+      for( int row = 0; row < 9; row++ )
+         for( int col = 0; col < 9; col++ )
+            if( model[row][col] != 0 )
+               view[row][col].setLabel( String.valueOf(model[row][col]) ) ;
+            else
+               view[row][col].setLabel( "" ) ;
+   }
+
+   /** This method is called by the browser when the applet is loaded */
+   public void init()
+   {
+      createModel() ;
+      createView() ;
+      updateView() ;
+   }
+
+   /** Checks if num is an acceptable value for the given row */
+   protected boolean checkRow( int row, int num )
+   {
+      for( int col = 0; col < 9; col++ )
+         if( model[row][col] == num )
+            return false ;
+
+      return true ;
+   }
+
+   /** Checks if num is an acceptable value for the given column */
+   protected boolean checkCol( int col, int num )
+   {
+      for( int row = 0; row < 9; row++ )
+         if( model[row][col] == num )
+            return false ;
+
+      return true ;
+   }
+
+   /** Checks if num is an acceptable value for the box around row and col */
+   protected boolean checkBox( int row, int col, int num )
+   {
+      row = (row / 3) * 3 ;
+      col = (col / 3) * 3 ;
+
+      for( int r = 0; r < 3; r++ )
+         for( int c = 0; c < 3; c++ )
+         if( model[row+r][col+c] == num )
+            return false ;
+
+      return true ;
+   }
+
+   /** This method is called by the browser to start the applet */
+   public void start()
+   {
+      // This statement will start the method 'run' to in a new thread
+      (new Thread(this)).start() ;
+   }
+
+   /** The active part begins here */
+   public void run()
+   {
+      try
+      {
+         // Let the observers see the initial position
+         Thread.sleep( 1000 ) ;
+
+         // Start to solve the puzzle in the left upper corner
+         solve( 0, 0 ) ;
+      }
+      catch( Exception e )
+      {
+      }
+   }
+
+   /** Recursive function to find a valid number for one single cell */
+   public void solve( int row, int col ) throws Exception
+   {
+      // Throw an exception to stop the process if the puzzle is solved
+      if( row > 8 )
+         throw new Exception( "Solution found" ) ;
+
+      // If the cell is not empty, continue with the next cell
+      if( model[row][col] != 0 )
+         next( row, col ) ;
+      else
+      {
+         // Find a valid number for the empty cell
+         for( int num = 1; num < 10; num++ )
+         {
+            if( checkRow(row,num) && checkCol(col,num) && checkBox(row,col,num) )
+            {
+               model[row][col] = num ;
+               updateView() ;
+
+               // Let the observer see it
+               Thread.sleep( 1000 ) ;
+
+               // Delegate work on the next cell to a recursive call
+               next( row, col ) ;
+            }
+         }
+
+         // No valid number was found, clean up and return to caller
+         model[row][col] = 0 ;
+         updateView() ;
+      }
+   }
+
+   /** Calls solve for the next cell */
+   public void next( int row, int col ) throws Exception
+   {
+      if( col < 8 )
+         solve( row, col + 1 ) ;
+      else
+         solve( row + 1, 0 ) ;
+   }
+}</pre>
+
+    <div class="bottom_item">
+        <a class="nav" href="#">show related</a>
+        <div class="language">
+            <p class="name">java</p>
+        </div>
+    </div>
+    </div>
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">fibonacci</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-cpp">
+# This program calculates the nth fibonacci number
+# using alrogirhtm 1A: naive binary recursion
+#
+# compiled: n/a
+# executed perl f1a.pl n
+#
+
+# Naive binary recursion: F(n) = F(n-1) + F(n-2)
+sub fib {
+    return @_[0] < 2 ? @_[0] : fib(@_[0]-1) + fib(@_[0]-2)
+}
+
+# Subroutine f(n) handles the negative arguments: F(-n) = F(n)*(-1)^(n+1)
+sub f {
+    if (@_[0] < 0) {
+        return @_[0] % 2 ? fib(-@_[0]) : -fib(-@_[0]);
+    } else {
+        return fib(@_[0]);
+    }
+}
+
+# Subroutine fib_print(n) prints out nth Fibonacci number
+sub fib_print {
+	print @_[0], "th Fibonacci number is ", f(@_[0]), "\n";
+}
+
+# entry point: check the number of command line parameters and check that
+# the first parameter is an integer, if either fails, report usage information
+if ( $#ARGV || int($ARGV[0]) ne $ARGV[0]) {
+    die "Usage: perl ", $0, " <n>\n";
+            } else {
+            fib_print($ARGV[0]);
+            }
+            }</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">perl</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">hello_world</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-go">
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello world!")
+}</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">go</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">hello_world</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">beerme</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-scala">
+object HelloWorld {
+    def main(args: Array[String]) {
+      println("Hello, world!")
+    }
+  }</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">scala</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col item">
+    <div class="top_item">
+        <p class="nav">tetris</p>
+        <div class="username">
+            <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">firebase</p>
+        </div>
+    </div>
+
+        <pre class="sunlight-highlight-javascript">
+var canvas = $("#canvas0").get(0);
+  if (!canvas || !canvas.getContext || !canvas.getContext('2d'))
+    alert("You must use a browser that supports HTML5 Canvas to run this demo.");
+
+  function start() {
+    var tetrisRef = new Firebase('https://example52109871.firebaseio-demo.com/');
+    var tetrisController = new Tetris.Controller(tetrisRef);
+  }
+
+  var Tetris = { };
+
+
+  /**
+   * Various constants related to board size / drawing.
+   */
+  Tetris.BOARD_WIDTH = 10; // (in "blocks", not pixels)
+  Tetris.BOARD_HEIGHT = 20;
+
+  Tetris.BLOCK_SIZE_PIXELS = 25;
+  Tetris.BOARD_HEIGHT_PIXELS = Tetris.BOARD_HEIGHT * Tetris.BLOCK_SIZE_PIXELS;
+  Tetris.BOARD_WIDTH_PIXELS = Tetris.BOARD_WIDTH * Tetris.BLOCK_SIZE_PIXELS;
+
+  Tetris.BLOCK_BORDER_COLOR = "#484848";
+  Tetris.BLOCK_COLORS = { 'X': 'black', 'b': 'cyan', 'B': 'blue', 'O': 'orange',
+                          'Y': 'yellow', 'G': 'green', 'P': '#9370D8', 'R': 'red' };
+
+  Tetris.GRAVITY_DELAY = 300; // 300ms
+
+  Tetris.EMPTY_LINE  = "          ";
+  Tetris.FILLED_LINE = "XXXXXXXXXX";
+  Tetris.COMPLETE_LINE_PATTERN = /[^ ]{10}/;
+
+  // Pieces.  (Indexed by piece rotation (0-3), row (0-3), piece number (0-6))
+  Tetris.PIECES = [];
+  for (var i = 0; i < 4; i++) { Tetris.PIECES[i] = []; }
+  Tetris.PIECES[0][0] = [ "    ",   "    ",   "    ",   "    ",   "    ",   "    ",   "    " ];
+  Tetris.PIECES[0][1] = [ "    ",   "B   ",   "  O ",   " YY ",   " GG ",   " P  ",   "RR  " ];
+  Tetris.PIECES[0][2] = [ "bbbb",   "BBB ",   "OOO ",   " YY ",   "GG  ",   "PPP ",   " RR " ];
+  Tetris.PIECES[0][3] = [ "    ",   "    ",   "    ",   "    ",   "    ",   "    ",   "    " ];
+  Tetris.PIECES[1][0] = [ " b  ",   "    ",   "    ",   "    ",   "    ",   "    ",   "  R " ];
+  Tetris.PIECES[1][1] = [ " b  ",   " B  ",   "OO  ",   " YY ",   " G  ",   " P  ",   " RR " ];
+  Tetris.PIECES[1][2] = [ " b  ",   " B  ",   " O  ",   " YY ",   " GG ",   " PP ",   " R  " ];
+  Tetris.PIECES[1][3] = [ " b  ",   "BB  ",   " O  ",   "    ",   "  G ",   " P  ",   "    " ];
+  Tetris.PIECES[2][0] = [ "    ",   "    ",   "    ",   "    ",   "    ",   "    ",   "    " ];
+  Tetris.PIECES[2][1] = [ "    ",   "    ",   "    ",   " YY ",   " GG ",   "    ",   "RR  " ];
+  Tetris.PIECES[2][2] = [ "bbbb",   "BBB ",   "OOO ",   " YY ",   "GG  ",   "PPP ",   " RR " ];
+  Tetris.PIECES[2][3] = [ "    ",   "  B ",   "O   ",   "    ",   "    ",   " P  ",   "    " ];
+  Tetris.PIECES[3][0] = [ " b  ",   "    ",   "    ",   "    ",   "    ",   "    ",   "  R " ];
+  Tetris.PIECES[3][1] = [ " b  ",   " BB ",   " O  ",   " YY ",   " G  ",   " P  ",   " RR " ];
+  Tetris.PIECES[3][2] = [ " b  ",   " B  ",   " O  ",   " YY ",   " GG ",   "PP  ",   " R  " ];
+  Tetris.PIECES[3][3] = [ " b  ",   " B  ",   " OO ",   "    ",   "  G ",   " P  ",   "    " ];
+
+
+
+  /**
+   * Stores the state of a tetris board and handles drawing it.
+   */
+  Tetris.Board = function (canvas, playerRef) {
+    this.context = canvas.getContext('2d');
+    this.playerRef = playerRef;
+    this.snapshot = null;
+    this.isMyBoard = false;
+
+    // Listen for changes to our board.
+    var self = this;
+    playerRef.on('value', function(snapshot) {
+      self.snapshot = snapshot;
+      self.draw();
+    });
+  };
+
+
+  /**
+   * Draws the contents of the board as well as the current piece.
+   */
+  Tetris.Board.prototype.draw = function () {
+    // Clear canvas.
+    this.context.clearRect(0, 0, Tetris.BOARD_WIDTH_PIXELS, Tetris.BOARD_HEIGHT_PIXELS);
+
+    // Iterate over columns / rows in board data and draw each non-empty block.
+    for (var x = 0; x < Tetris.BOARD_WIDTH; x++) {
+      for (var y = 0; y < Tetris.BOARD_HEIGHT; y++) {
+        var colorValue = this.getBlockVal(x, y);
+        if (colorValue != ' ') {
+          // Calculate block position and draw a correctly-colored square.
+          var left = x * Tetris.BLOCK_SIZE_PIXELS;
+          var top = y * Tetris.BLOCK_SIZE_PIXELS;
+          this.context.fillStyle = Tetris.BLOCK_COLORS[colorValue];
+          this.context.fillRect(left, top, Tetris.BLOCK_SIZE_PIXELS, Tetris.BLOCK_SIZE_PIXELS);
+          this.context.lineWidth = 1;
+          this.context.strokeStyle = Tetris.BLOCK_BORDER_COLOR;
+          this.context.strokeRect(left, top, Tetris.BLOCK_SIZE_PIXELS, Tetris.BLOCK_SIZE_PIXELS);
+        }
+      }
+    }
+
+    // If there's a falling piece, draw it.
+    if (this.snapshot !== null && this.snapshot.hasChild('piece')) {
+      var piece = Tetris.Piece.fromSnapshot(this.snapshot.child('piece'));
+      this.drawPiece(piece);
+    }
+
+    // If this isn't my board, dim it out with a 25% opacity black rectangle.
+    if (!this.isMyBoard) {
+      this.context.fillStyle = "rgba(0, 0, 0, 0.25)";
+      this.context.fillRect(0, 0, Tetris.BOARD_WIDTH_PIXELS, Tetris.BOARD_HEIGHT_PIXELS);
+    }
+  };
+
+
+  /**
+   * Draw the currently falling piece.
+   */
+  Tetris.Board.prototype.drawPiece = function (piece) {
+    var self = this;
+    this.forEachBlockOfPiece(piece,
+      function (x, y, colorValue) {
+        var left = x * Tetris.BLOCK_SIZE_PIXELS;
+        var top = y * Tetris.BLOCK_SIZE_PIXELS;
+
+        self.context.fillStyle = Tetris.BLOCK_COLORS[colorValue];
+        self.context.fillRect(left, top, Tetris.BLOCK_SIZE_PIXELS, Tetris.BLOCK_SIZE_PIXELS);
+        self.context.lineWidth = 1;
+        self.context.strokeStyle = Tetris.BLOCK_BORDER_COLOR;
+        self.context.strokeRect(left, top, Tetris.BLOCK_SIZE_PIXELS, Tetris.BLOCK_SIZE_PIXELS);
+      });
+  };
+
+
+  /**
+   * Clear the board contents.
+   */
+  Tetris.Board.prototype.clear = function () {
+    for (var row = 0; row < Tetris.BOARD_HEIGHT; row++) {
+      this.setRow(row, Tetris.EMPTY_LINE);
+    }
+  };
+
+
+  /**
+   * Given a Tetris.Piece, returns true if it has collided with the board (i.e. its current position
+   * and rotation causes it to overlap blocks already on the board).
+   */
+  Tetris.Board.prototype.checkForPieceCollision = function (piece) {
+    var collision = false;
+    var self = this;
+    this.forEachBlockOfPiece(piece,
+      function (x, y, colorValue) {
+        // NOTE: we explicitly allow y < 0 since pieces can be partially visible.
+        if (x < 0 || x >= Tetris.BOARD_WIDTH || y >= Tetris.BOARD_HEIGHT) {
+          collision = true;
+        }
+        else if (y >= 0 && self.getBlockVal(x, y) != ' ') {
+          collision = true; // collision with board contents.
+        }
+      }, /*includeInvalid=*/ true);
+
+    return collision;
+  };
+
+
+  /**
+   * Given a Tetris.Piece that has landed, add it to the board contents.
+   */
+  Tetris.Board.prototype.addLandedPiece = function (piece) {
+    var self = this;
+    // We go out of our way to set an entire row at a time just so the rows show up as
+    // child_added in the graphical debugger, rather than child_changed.
+    var rowY = -1, rowContents = null;
+    this.forEachBlockOfPiece(piece,
+      function (x, y, val) {
+        if (y != rowY) {
+          if (rowY !== -1)
+            self.setRow(rowY, rowContents);
+
+          rowContents = self.getRow(y);
+          rowY = y;
+        }
+        rowContents = rowContents.substring(0, x).concat(val).concat(rowContents.substring(x + 1, Tetris.BOARD_WIDTH));
+      });
+
+    if (rowY !== -1)
+      self.setRow(rowY, rowContents);
+  };
+
+
+  /**
+   * Check for any completed lines (no gaps) and remove them, then return the number
+   * of removed lines.
+   */
+  Tetris.Board.prototype.removeCompletedRows = function () {
+    // Start at the bottom of the board, working up, removing completed lines.
+    var copyFrom = Tetris.BOARD_HEIGHT - 1;
+    var copyTo = copyFrom;
+
+    var completedRows = 0;
+    while (copyFrom >= 0) {
+      var fromContents = this.getRow(copyFrom);
+
+      // See if the line is complete (if so, we'll skip it)
+      if (fromContents.match(Tetris.COMPLETE_LINE_PATTERN)) {
+        copyFrom--;
+        completedRows++;
+      } else {
+        // Copy the row down (to fill the gap from any removed rows) and continue on.
+        this.setRow(copyTo, fromContents);
+        copyFrom--;
+        copyTo--;
+      }
+    }
+
+    return completedRows;
+  };
+
+
+  /**
+   * Generate the specified number of junk rows at the bottom of the board. Return true if the added
+   * rows overflowed the board (in which case the player loses).
+   */
+  Tetris.Board.prototype.addJunkRows = function (numRows) {
+    var overflow = false;
+    // First, check if any blocks are going to overflow off the top of the screen.
+    var topRowContents = this.getRow(numRows - 1);
+    overflow = topRowContents.match(/[^ ]/);
+
+    // Shift rows up to make room for the new rows.
+    for (var i = 0; i < Tetris.BOARD_HEIGHT - numRows; i++) {
+      var moveLineContents = this.getRow(i + numRows);
+      this.setRow(i, moveLineContents);
+    }
+
+    // Fill the bottom with junk rows that are full except for a single random gap.
+    var gap = Math.floor(Math.random() * Tetris.FILLED_LINE.length);
+    var junkRow = Tetris.FILLED_LINE.substring(0, gap) + ' ' + Tetris.FILLED_LINE.substring(gap + 1);
+    for (i = Tetris.BOARD_HEIGHT - numRows; i < Tetris.BOARD_HEIGHT; i++) {
+      this.setRow(i, junkRow);
+    }
+
+    return overflow;
+  };
+
+
+  /**
+   * Helper to enumerate the blocks that make up a particular piece.  Calls fn() for each block,
+   * passing the x and y position of the block and the color value.  If includeInvalid is true, it
+   * includes blocks that would fall outside the bounds of the board.
+   */
+  Tetris.Board.prototype.forEachBlockOfPiece = function (piece, fn, includeInvalid) {
+    for (var blockY = 0; blockY < 4; blockY++) {
+      for (var blockX = 0; blockX < 4; blockX++) {
+        var colorValue = Tetris.PIECES[piece.rotation][blockY][piece.pieceNum].charAt(blockX);
+        if (colorValue != ' ') {
+          var x = piece.x + blockX, y = piece.y + blockY;
+          if (includeInvalid || (x >= 0 && x < Tetris.BOARD_WIDTH && y >= 0 && y < Tetris.BOARD_HEIGHT)) {
+            fn(x, y, colorValue);
+          }
+        }
+      }
+    }
+  };
+
+
+  Tetris.Board.prototype.getRow = function (y) {
+    var row = (y < 10) ? ('0' + y) : ('' + y); // Pad row so they sort nicely in debugger. :-)
+
+    var rowContents = this.snapshot === null ? null : this.snapshot.child('board/' + row).val();
+    return rowContents || Tetris.EMPTY_LINE;
+  };
+
+
+  Tetris.Board.prototype.getBlockVal = function (x, y) {
+    return this.getRow(y).charAt(x);
+  };
+
+
+  Tetris.Board.prototype.setRow = function (y, rowContents) {
+    var row = (y < 10) ? ('0' + y) : ('' + y); // Pad row so they sort nicely in debugger. :-)
+
+    if (rowContents === Tetris.EMPTY_LINE)
+      rowContents = null; // delete empty lines so we get remove / added events in debugger. :-)
+
+    this.playerRef.child('board').child(row).set(rowContents);
+  };
+
+
+  Tetris.Board.prototype.setBlockVal = function (x, y, val) {
+    var rowContents = this.getRow(y);
+    rowContents = rowContents.substring(0, x) + val + rowContents.substring(x+1);
+    this.setRow(y, rowContents);
+  };
+
+
+  /**
+   * Immutable object representing a falling piece along with its rotation and board position.
+   * Has helpers for generating mutated Tetris.Piece objects (e.g. rotated or dropped).
+   */
+  Tetris.Piece = function (pieceNum, x, y, rotation) {
+    if (arguments.length > 0) {
+      this.pieceNum = pieceNum;
+      this.x = x;
+      this.y = y;
+      this.rotation = rotation;
+    } else {
+      // Initialize new random piece.
+      this.pieceNum = Math.floor(Math.random() * 7);
+      this.x = 4; // "center" it.
+      this.y = -2; // this will make the bottom line of the piece visible.
+      this.rotation = 0;
+    }
+  };
+
+
+  /**
+   * Create a piece from a Firebase snapshot representing a piece.
+   */
+  Tetris.Piece.fromSnapshot = function (snapshot) {
+    var piece = snapshot.val();
+    return new Tetris.Piece(piece.pieceNum, piece.x, piece.y, piece.rotation);
+  };
+
+
+  /**
+   * Writes the current piece data into Firebase.
+   */
+  Tetris.Piece.prototype.writeToFirebase = function (pieceRef) {
+    pieceRef.set({pieceNum: this.pieceNum, x: this.x, y: this.y, rotation: this.rotation});
+  };
+
+
+  Tetris.Piece.prototype.drop = function () {
+    return new Tetris.Piece(this.pieceNum, this.x, this.y + 1, this.rotation);
+  };
+
+
+  Tetris.Piece.prototype.rotate = function () {
+    return new Tetris.Piece(this.pieceNum, this.x, this.y, (this.rotation + 1) % 4);
+  };
+
+
+  Tetris.Piece.prototype.moveLeft = function () {
+    return new Tetris.Piece(this.pieceNum, this.x - 1, this.y, this.rotation);
+  };
+
+
+  Tetris.Piece.prototype.moveRight = function () {
+    return new Tetris.Piece(this.pieceNum, this.x + 1, this.y, this.rotation);
+  };
+
+
+
+  /**
+   * Manages joining the game, responding to keypresses, making the piece drop, etc.
+   */
+  Tetris.PlayingState = { Watching: 0, Joining: 1, Playing: 2 };
+  Tetris.Controller = function (tetrisRef) {
+    this.tetrisRef = tetrisRef;
+    this.createBoards();
+
+    this.playingState = Tetris.PlayingState.Watching;
+    this.waitToJoin();
+  };
+
+
+  Tetris.Controller.prototype.createBoards = function () {
+    this.boards = [];
+    for(var i = 0; i <= 1; i++) {
+      var playerRef = this.tetrisRef.child('player' + i);
+      var canvas = $('#canvas' + i).get(0);
+      this.boards.push(new Tetris.Board(canvas, playerRef));
+    }
+  };
+
+
+  Tetris.Controller.prototype.waitToJoin = function() {
+    var self = this;
+
+    // Listen on 'online' location for player0 and player1.
+    this.tetrisRef.child('player0/online').on('value', function(onlineSnap) {
+      if (onlineSnap.val() === null && self.playingState === Tetris.PlayingState.Watching) {
+        self.tryToJoin(0);
+      }
+    });
+
+    this.tetrisRef.child('player1/online').on('value', function(onlineSnap) {
+      if (onlineSnap.val() === null && self.playingState === Tetris.PlayingState.Watching) {
+        self.tryToJoin(1);
+      }
+    });
+  };
+
+
+  /**
+   * Try to join the game as the specified playerNum.
+   */
+  Tetris.Controller.prototype.tryToJoin = function(playerNum) {
+    // Set ourselves as joining to make sure we don't try to join as both players. :-)
+    this.playingState = Tetris.PlayingState.Joining;
+
+    // Use a transaction to make sure we don't conflict with other people trying to join.
+    var self = this;
+    this.tetrisRef.child('player' + playerNum + '/online').transaction(function(onlineVal) {
+      if (onlineVal === null) {
+        return true; // Try to set online to true.
+      } else {
+        return; // Somebody must have beat us.  Abort the transaction.
+      }
+    }, function(success) {
+      if (success) { // We got in!
+        self.playingState = Tetris.PlayingState.Playing;
+        self.startPlaying(playerNum);
+      } else {
+        self.playingState = Tetris.PlayingState.Watching;
+      }
+    });
+  };
+
+
+  /**
+   * Once we've joined, enable controlling our player.
+   */
+  Tetris.Controller.prototype.startPlaying = function (playerNum) {
+    this.myPlayerRef = this.tetrisRef.child('player' + playerNum);
+    this.opponentPlayerRef = this.tetrisRef.child('player' + (1 - playerNum));
+    this.myBoard = this.boards[playerNum];
+    this.myBoard.isMyBoard = true;
+    this.myBoard.draw();
+
+    // Clear our 'online' status when we disconnect so somebody else can join.
+    this.myPlayerRef.child('online').removeOnDisconnect();
+
+    // Detect when other player pushes rows to our board.
+    this.watchForExtraRows();
+
+    // Detect when game is restarted by other player.
+    this.watchForRestart();
+
+    $('#gameInProgress').hide();
+
+    var self = this;
+    $('#restartButton').removeAttr('disabled');
+    $("#restartButton").click(function () {
+      self.restartGame();
+    });
+
+    this.initializePiece();
+    this.enableKeyboard();
+    this.resetGravity();
+  };
+
+
+  Tetris.Controller.prototype.initializePiece = function() {
+    this.fallingPiece = null;
+    var pieceRef = this.myPlayerRef.child('piece');
+    var self = this;
+
+    // Watch for changes to the current piece (and initialize it if it's null).
+    pieceRef.on('value', function(snapshot) {
+      if (snapshot.val() === null) {
+        var newPiece = new Tetris.Piece();
+        newPiece.writeToFirebase(pieceRef);
+      } else {
+        self.fallingPiece = Tetris.Piece.fromSnapshot(snapshot);
+      }
+    });
+  };
+
+
+  /**
+   * Sets up handlers for all keyboard commands.
+   */
+  Tetris.Controller.prototype.enableKeyboard = function () {
+    var self = this;
+    $(document).on('keydown', function (evt) {
+      if (self.fallingPiece === null)
+        return; // piece isn't initialized yet.
+
+      var keyCode = evt.which;
+      var key = { space:32, left:37, up:38, right:39, down:40 };
+
+      var newPiece = null;
+      switch (keyCode) {
+        case key.left:
+          newPiece = self.fallingPiece.moveLeft();
+          break;
+        case key.up:
+          newPiece = self.fallingPiece.rotate();
+          break;
+        case key.right:
+          newPiece = self.fallingPiece.moveRight();
+          break;
+        case key.down:
+          newPiece = self.fallingPiece.drop();
+          break;
+        case key.space:
+          // Drop as far as we can.
+          var droppedPiece = self.fallingPiece;
+          do {
+            newPiece = droppedPiece;
+            droppedPiece = droppedPiece.drop();
+          } while (!self.myBoard.checkForPieceCollision(droppedPiece));
+          break;
+      }
+
+      if (newPiece !== null) {
+        // If the new piece position / rotation is valid, update self.fallingPiece and firebase.
+        if (!self.myBoard.checkForPieceCollision(newPiece)) {
+          // If the keypress moved the piece down, reset gravity.
+          if (self.fallingPiece.y != newPiece.y) {
+            self.resetGravity();
+          }
+
+          newPiece.writeToFirebase(self.myPlayerRef.child('piece'));
+        }
+        return false; // handled
+      }
+
+      return true;
+    });
+  };
+
+
+  /**
+   * Sets a timer to make the piece repeatedly drop after GRAVITY_DELAY ms.
+   */
+  Tetris.Controller.prototype.resetGravity = function () {
+    // If there's a timer already active, clear it first.
+    if (this.gravityIntervalId !== null) {
+      clearInterval(this.gravityIntervalId);
+    }
+
+    var self = this;
+    this.gravityIntervalId = setInterval(function() {
+      self.doGravity();
+    }, Tetris.GRAVITY_DELAY);
+  };
+
+
+  Tetris.Controller.prototype.doGravity = function () {
+    if (this.fallingPiece === null)
+      return; // piece isn't initialized yet.
+
+    var newPiece = this.fallingPiece.drop();
+
+    // If we've hit the bottom, add the (pre-drop) piece to the board and create a new piece.
+    if (this.myBoard.checkForPieceCollision(newPiece)) {
+      this.myBoard.addLandedPiece(this.fallingPiece);
+
+      // Check for completed lines and if appropriate, push extra rows to our opponent.
+      var completedRows = this.myBoard.removeCompletedRows();
+      var rowsToPush = (completedRows === 4) ? 4 : completedRows - 1;
+      if (rowsToPush > 0)
+        this.opponentPlayerRef.child('extrarows').push(rowsToPush);
+
+      // Create new piece (it'll be initialized to a random piece at the top of the screen).
+      newPiece = new Tetris.Piece();
+
+      // Is the board full?
+      if (this.myBoard.checkForPieceCollision(newPiece))
+        this.gameOver();
+    }
+
+    newPiece.writeToFirebase(this.myPlayerRef.child('piece'));
+  };
+
+
+  /**
+   * Detect when our opponent pushes extra rows to us.
+   */
+  Tetris.Controller.prototype.watchForExtraRows = function () {
+    var self = this;
+    var extraRowsRef = this.myPlayerRef.child('extrarows');
+    extraRowsRef.on('child_added', function(snapshot) {
+      var rows = snapshot.val();
+      extraRowsRef.child(snapshot.name()).remove();
+
+      var overflow = self.myBoard.addJunkRows(rows);
+      if (overflow)
+        self.gameOver();
+
+      // Also move piece up to avoid collisions.
+      if (self.fallingPiece) {
+        self.fallingPiece.y -= rows;
+        self.fallingPiece.writeToFirebase(self.myPlayerRef.child('piece'));
+      }
+    });
+  };
+
+
+  /**
+   * Detect when our opponent restarts the game.
+   */
+  Tetris.Controller.prototype.watchForRestart = function () {
+    var self = this;
+    var restartRef = this.myPlayerRef.child('restart');
+    restartRef.on('value', function(snap) {
+      if (snap.val() === 1) {
+        restartRef.set(0);
+        self.resetMyBoardAndPiece();
+      }
+    });
+  };
+
+
+  Tetris.Controller.prototype.gameOver = function () {
+    this.restartGame();
+  };
+
+
+  Tetris.Controller.prototype.restartGame = function () {
+    this.opponentPlayerRef.child('restart').set(1);
+    this.resetMyBoardAndPiece();
+  };
+
+
+  Tetris.Controller.prototype.resetMyBoardAndPiece = function () {
+    this.myBoard.clear();
+    var newPiece = new Tetris.Piece();
+    newPiece.writeToFirebase(this.myPlayerRef.child('piece'));
+  };
+
+
+  start();</pre>
+
+    <div class="bottom_item">
+        <p class="nav"><a href="#">show related</a></p>
+        <div class="language">
+            <div class="vline"></div><p class="name">javascript</p>
+        </div>
+    </div>
+    </div>
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">presence</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">firebase</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-javascript">
+// Prompt the user for a name to use.
+  var name = prompt("Your name?", "Guest");
+
+  // Get a reference to the presence data in firebase.
+  var userListRef = new Firebase('https://example52109871.firebaseio-demo.com/');
+
+  //Get a reference to my own presence status
+  var myStatus = userListRef.child(name);
+
+  //Our initial online status.
+  var currentStatus = '★ online';
+
+  //A helper function to let us set our own state.
+  function setUserStatus(status) {
+    currentStatus = status;
+    //if we lose our internet connection, we want ourselves removed from the list.
+    myStatus.removeOnDisconnect();
+    myStatus.set(status);
+  }
+
+  //We need to catch anytime we are marked as offline and then set the correct status. We
+  //could be marked as offline 1) on page load or 2) when we lose our internet connection
+  //temporarily.
+  myStatus.on("value", function(snapshot) {
+    if(snapshot.val() === null) {
+      setUserStatus(currentStatus);
+    }
+  });
+
+  // Render someone's online status
+  function addStatus(snapshot) {
+    $('#presenceDiv').append($('<div/>').attr('id', snapshot.name()));
+    setStatus(snapshot);
+  }
+  //Remove the status of a user who left
+  function removeStatus(snapshot) {
+    $("#" + snapshot.name()).remove();
+  }
+  //Change a user's status
+  function setStatus(snapshot) {
+    $('#' + snapshot.name()).text(snapshot.name() + ' is currently ' + snapshot.val());
+  }
+
+  //Anytime an online status is added, removed, or changed, we want to update the GUI
+  userListRef.on('child_added', addStatus);
+  userListRef.on('child_removed', removeStatus);
+  userListRef.on('child_changed', setStatus);
+
+  // Use idle/away/back events created by idle.js to update our status information.;
+  document.onIdle = function () {
+    setUserStatus('☆ idle');
+  }
+  document.onAway = function () {
+    setUserStatus('☄ away');
+  }
+  document.onBack = function (isIdle, isAway) {
+    setUserStatus('★ online');
+  }
+
+  setIdleTimeout(5000);
+  setAwayTimeout(10000);</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">javascript</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">convert_images</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">filepicker.io</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-javascript">
+var fpfile = { url: 'https://www.filepicker.io/api/file/fxOBK6ZIQsqEvKQY5tFa',
+    filename: 'customers.jpg', mimetype: 'image/jpeg', isWriteable: false, size: 629454};
+console.log("Converting...");
+/*an <img> element where we can display the resulting image*/
+var result = document.getElementById("convert-result");
+filepicker.convert(fpfile, {width: 200, height: 200},
+    function(new_FPFile){
+        console.log(new_FPFile.url);
+        result.src = new_FPFile.url;
+    }
+);</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">javascript</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">FPPickerController</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">filepicker.io</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-objective-c">
+// To create the object
+FPPickerController *fpController = [[FPPickerController alloc] init];
+
+// Set the delegate
+fpController.fpdelegate = self;
+
+// Ask for specific data types. (Optional) Default is all files.
+fpController.dataTypes = [NSArray arrayWithObjects:@"text/plain", nil];
+
+// Select and order the sources (Optional) Default is all sources
+fpController.sourceNames = [[NSArray alloc] initWithObjects: FPSourceImagesearch, FPSourceDropbox, nil];
+
+// You can set some of the in built Camera properties as you would with UIImagePicker
+fpController.allowsEditing = YES;
+
+
+/* Control if we should upload or download the files for you.
+ * Default is yes.
+ * When a user selects a local file, we'll upload it and return a remote url
+ * When a user selects a remote file, we'll download it and return the filedata to you.
+ */
+//fpController.shouldUpload = NO;
+//fpController.shouldDownload = NO;
+
+// Display it.
+[self presentModalViewController:fpController animated:YES];</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">objective-c</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col item">
+        <div class="top_item">
+            <p class="nav">sudoku</p>
+            <div class="username">
+                <div class="vline"></div><img class="user_img" src="/static/img/kevnguy.jpeg" alt="img"><p class="name">angelhack</p>
+            </div>
+        </div>
+
+        <pre class="sunlight-highlight-python">
+import time, random
+
+def solve_all(grids, name='', showif=0.0):
+    """Attempt to solve a sequence of grids. Report results.
+    When showif is a number of seconds, display puzzles that take longer.
+    When showif is None, don't display any puzzles."""
+    def time_solve(grid):
+        start = time.clock()
+        values = solve(grid)
+        t = time.clock()-start
+        ## Display puzzles that take long enough
+        if showif is not None and t > showif:
+            display(grid_values(grid))
+            if values: display(values)
+            print '(%.2f seconds)\n' % t
+        return (t, solved(values))
+    times, results = zip(*[time_solve(grid) for grid in grids])
+    N = len(grids)
+    if N > 1:
+        print "Solved %d of %d %s puzzles (avg %.2f secs (%d Hz), max %.2f secs)." % (
+            sum(results), N, name, sum(times)/N, N/sum(times), max(times))
+
+def solved(values):
+    "A puzzle is solved if each unit is a permutation of the digits 1 to 9."
+    def unitsolved(unit): return set(values[s] for s in unit) == set(digits)
+    return values is not False and all(unitsolved(unit) for unit in unitlist)
+
+def from_file(filename, sep='\n'):
+    "Parse a file into a list of strings, separated by sep."
+    return file(filename).read().strip().split(sep)
+
+def random_puzzle(N=17):
+    """Make a random puzzle with N or more assignments. Restart on contradictions.
+    Note the resulting puzzle is not guaranteed to be solvable, but empirically
+    about 99.8% of them are solvable. Some have multiple solutions."""
+    values = dict((s, digits) for s in squares)
+    for s in shuffled(squares):
+        if not assign(values, s, random.choice(values[s])):
+            break
+        ds = [values[s] for s in squares if len(values[s]) == 1]
+        if len(ds) >= N and len(set(ds)) >= 8:
+            return ''.join(values[s] if len(values[s])==1 else '.' for s in squares)
+    return random_puzzle(N) ## Give up and make a new puzzle
+
+def shuffled(seq):
+    "Return a randomly shuffled copy of the input sequence."
+    seq = list(seq)
+    random.shuffle(seq)
+    return seq
+
+grid1  = '003020600900305001001806400008102900700000008006708200002609500800203009005010300'
+grid2  = '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
+hard1  = '.....6....59.....82....8....45........3........6..3.54...325..6..................'
+
+if __name__ == '__main__':
+    test()
+    solve_all(from_file("easy50.txt", '========'), "easy", None)
+    solve_all(from_file("top95.txt"), "hard", None)
+    solve_all(from_file("hardest.txt"), "hardest", None)
+    solve_all([random_puzzle() for _ in range(99)], "random", 100.0)</pre>
+
+        <div class="bottom_item">
+            <p class="nav"><a href="#">show related</a></p>
+            <div class="language">
+                <div class="vline"></div><p class="name">python</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+
+{%  endblock %}

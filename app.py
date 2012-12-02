@@ -45,6 +45,10 @@ def angelhack():
 def sandwiches():
     return render_template('sandwiches.html')
 
+@app.route('/recent')
+def recent():
+    return render_template('recent.html')
+
 
 
 
