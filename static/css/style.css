@@ -324,5 +324,9 @@ header .nav {
     color: #000;
 }
 
+footer {
+    text-align: center;
+    margin-top: -35px;
+}
 
 
