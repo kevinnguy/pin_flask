@@ -58,7 +58,7 @@
 
   <!-- Additional JavaScript libraries and plugins... -->
 
-  <script src="/static/js/sunlight.js"></script>
+  <script src="/static/js/sunlight-all-min.js"></script>
   <script src="/static/js/jquery.masonry.min.js"></script>
 
   <script type="text/javascript">
@@ -70,8 +70,9 @@
   </script>
 
   <script type="text/javascript">
-      Sunlight.highlightAll();
+      Sunlight.highlightAll({ lineNumbers: true });
   </script>
+
   {% block js %}{% endblock %}
 
 
