@@ -150,6 +150,12 @@ header .nav {
 	-webkit-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.3);
 }
 
+.social {
+    width: 24px;
+    height: 24px;
+    margin-right: 13px;
+}
+
 #login .user_img {
     margin: 1px 3px;
     vertical-align: top;
@@ -290,11 +296,23 @@ header .nav {
     display: inline-block;
 }
 
+.modal {
+    position: relative;
 
+}
 
+.ui-dialog-titlebar-close {
+    visibility: hidden;
+}
 
-
-
+.ui-widget-overlay {
+    background: black;
+    filter: alpha(opacity = 50);
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+}
 
 
 

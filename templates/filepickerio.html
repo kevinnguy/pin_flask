@@ -52,7 +52,7 @@ filepicker.convert(fpfile, {width: 200, height: 200},
         </div>
     </div>
 
-    <div class="col item">
+    <div id="chicken" class="col item">
         <div class="top_item">
             <p class="nav">FPPickerController</p>
             <div class="username">
@@ -78,10 +78,10 @@ fpController.allowsEditing = YES;
 
 
 /* Control if we should upload or download the files for you.
- * Default is yes.
- * When a user selects a local file, we'll upload it and return a remote url
- * When a user selects a remote file, we'll download it and return the filedata to you.
- */
+* Default is yes.
+* When a user selects a local file, we'll upload it and return a remote url
+* When a user selects a remote file, we'll download it and return the filedata to you.
+*/
 //fpController.shouldUpload = NO;
 //fpController.shouldDownload = NO;
 
@@ -98,5 +98,10 @@ fpController.allowsEditing = YES;
 {% endblock %}
 
 {% block js %}
-
+    <script>
+        $( ".modal" ).dialog({ autoOpen: false, closeOnEscape:true, minWidth: 650, maxWidth: 650, zIndex: -1, open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog || ui).hide(); } });
+        $( "#opener" ).click(function() {
+            $( ".modal" ).dialog( "open" );
+        });
+    </script>
 {%  endblock %}
