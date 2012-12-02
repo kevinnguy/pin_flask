@@ -7,15 +7,16 @@ This file creates your application.
 """
 
 import os
+
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
+app.config.from_object(__name__)
 
 if 'SECRET_KEY' in os.environ:
     app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 else:
     app.config['SECRET_KEY'] = 'this_should_be_configured'
-
 
 ###
 # Routing for your application.
@@ -62,4 +63,5 @@ def page_not_found(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
